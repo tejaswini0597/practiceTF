@@ -1,5 +1,4 @@
 name: 'Terraform-Plan-Infra-Plan'
-
 on:
   push:
     branches:
