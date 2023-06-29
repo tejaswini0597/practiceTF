@@ -1,0 +1,33 @@
+name: 'Terraform-Plan'  #name
+
+on:
+  push:
+    branches:
+     -FeatureBranch1
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    env:
+      ARM_CLIENT_ID: "${{ secrets.AWS_KEY_ID }}"
+      ARM_SUBSCRIPTION_ID: "${{ secrets.AWS_SECRET_ID }}" 
+      ARM_REGION: "us-east-1
+       
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      id:init
+      run: terraform init
+
+    - name: Terraform Plan
+      id:plan
+      if: github.event_name == 'push' 
+      run: terraform plan -no-color
+
+    
