@@ -1,18 +1,18 @@
-name: 'Terraform-Apply'
+name: 'Terraform-Apply-Infra-Release'
 
 on:
   push:
     branches:
-    - main	#invoked when push happens on main		
+    - main
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: "Terraform"
     runs-on: ubuntu-latest
     env:
-      ARM_CLIENT_ID: "${{ secrets.AWS_KEY_ID }}"
-      ARM_SUBSCRIPTION_ID: "${{ secrets.AWS_SECRET_ID }}"
-      ARM_REGION: "us-east-1
+      AWS_ACCESS_KEY_ID: 'AKIAQH3PFWDTGPLXOH4F'
+      AWS_SECRET_ACCESS_KEY: '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'
+      ARM_REGION: 'us-east-1'
        
     steps:
     - name: Checkout
@@ -22,17 +22,17 @@ jobs:
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
-      id:init
+      id: init
       run: terraform init
 
     - name: Terraform Plan
-      id:plan
+      id: plan
       if: github.event_name == 'push'
       run: terraform plan -no-color
-      continue-on-error:true
+      continue-on-error: true
 
     -name: Terraform Plan status
-     if:steps.plan.outcome == 'failure'   
+     if: steps.plan.outcome == 'failure'   
      run: exit 1
 
     -name: Terraform Apply
