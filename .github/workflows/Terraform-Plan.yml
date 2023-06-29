@@ -10,8 +10,8 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     env:
-      ARM_CLIENT_ID: 'AKIAQH3PFWDTGPLXOH4F'
-      ARM_SUBSCRIPTION_ID: 'siLssh9ImCV1QVSqdvF/oH/oM75hgGsHy4Cgqqvm'
+      AWS_ACCESS_KEY_ID: 'AKIAQH3PFWDTGPLXOH4F'
+      AWS_SECRET_ACCESS_KEY: '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'
       ARM_REGION: 'us-east-1'
        
     steps:
