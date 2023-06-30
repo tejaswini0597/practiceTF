@@ -4,7 +4,8 @@ provider "aws" {
     region="us-east-1"
 }
 
-resource "aws_instance" "Demo2" {
+resource "aws_instance" "Trail" {
     ami="ami-03b8a287edc0c1253"
     instance_type="t2.micro"
 }
+
